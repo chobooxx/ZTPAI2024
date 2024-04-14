@@ -32,4 +32,10 @@ public class User {
             joinColumns = {@JoinColumn( name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "type_id")})
     private Set<Type> roles = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "user_to_read_books",
+            joinColumns = {@JoinColumn( name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "book_id")})
+    private Set<Book> toReadBooks = new HashSet<>();
 }
