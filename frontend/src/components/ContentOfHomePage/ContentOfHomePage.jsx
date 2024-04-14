@@ -1,9 +1,9 @@
 import React from 'react'
-import './ContentOfPage.css'
+import './ContentOfHomePage.css'
 import HomePageRecommendedBook from '../HomePageRecommendedBook/HomePageRecommendedBook'
 import BookOfTheDay from '../BookOfTheDay/BookOfTheDay'
 
-const ContentOfPage = () => {
+const ContentOfHomePage = () => {
     return (
         <div className="content_main">
             <div className="content_main_left">
@@ -26,4 +26,4 @@ const ContentOfPage = () => {
     )
 }
 
-export default ContentOfPage
+export default ContentOfHomePage

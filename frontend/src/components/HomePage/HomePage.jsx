@@ -1,17 +1,15 @@
 import React from 'react';
 import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
-import ContentOfPage from '../ContentOfPage/ContentOfPage';
+import ContentOfHomePage from '../ContentOfHomePage/ContentOfHomePage';
 
 const HomePage = () => {
     return (
-        <div>
+        <>
             <Header />
             <NavigationBar />
-            <ContentOfPage>
-                
-            </ContentOfPage>
-        </div>
+            <ContentOfHomePage />
+        </>
     )
 }
 

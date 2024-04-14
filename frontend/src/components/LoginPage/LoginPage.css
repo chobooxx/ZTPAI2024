@@ -70,10 +70,10 @@
 
 }
 
-a:visited { text-decoration: none; color:#558F6B; }
+/* a:visited { text-decoration: none; color:#558F6B; }
 a:hover { text-decoration: none; color:#558F6B; }
 a:focus { text-decoration: none; color:#558F6B; }
-a:active { text-decoration: none; color:#558F6B }
+a:active { text-decoration: none; color:#558F6B } */
 
 .login_errors {
     color: red;
