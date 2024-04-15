@@ -10,22 +10,21 @@ const CategoriesPage = () => {
       <Header />
       <NavigationBar />
       <ContentBox>
-          <div class="content_categories">
-            <div class="content_categories_title">
+          <div className="content_categories">
+            <div className="content_categories_title">
               Categories
             </div>
 
-            <div class="content_categories_blocks">
+            <div className="content_categories_blocks">
               <ul>
-                <li><a href="" class="content_categories_blocks_book">
+                <li><a href="" className="content_categories_blocks_book">
                   Element
                 </a></li>
-                <li><a href="" class="content_categories_blocks_book">
+                <li><a href="" className="content_categories_blocks_book">
                   Element
                 </a></li>
               </ul>
             </div>
-
           </div>
       </ContentBox>
     </>

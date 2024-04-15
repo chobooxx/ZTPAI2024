@@ -1,15 +1,16 @@
 import React from 'react';
 import './NavigationBar.css';
 
+
 const NavigationBar = () => {
     return (
         <div className="nav_bar">
             <img id="logoMoblie" src="../../../img/mobileLogo.svg" />
-            <a className="menu_element">
+            <a href='/homepage' className="menu_element">
                 <img src="../../../img/home.svg" />
                 <div>HOME</div>
             </a>
-            <a className="menu_element">
+            <a href='/categories' className="menu_element">
                 <img src="../../../img/category.svg" />
                 <div>CATEGORIES</div>
             </a>
