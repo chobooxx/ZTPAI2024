@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import './CategoriesPage.css'
 import ContentBox from '../ContentBox/ContentBox'
+import { Link } from 'react-router-dom';
 
 const CategoriesPage = () => {
   return (
@@ -17,12 +18,12 @@ const CategoriesPage = () => {
 
             <div className="content_categories_blocks">
               <ul>
-                <li><a href="" className="content_categories_blocks_book">
+                <li><Link href="" className="content_categories_blocks_book">
                   Element
-                </a></li>
-                <li><a href="" className="content_categories_blocks_book">
+                </Link></li>
+                <li><Link href="" className="content_categories_blocks_book">
                   Element
-                </a></li>
+                </Link></li>
               </ul>
             </div>
           </div>
