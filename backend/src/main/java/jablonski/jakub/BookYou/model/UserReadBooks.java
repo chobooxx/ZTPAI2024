@@ -10,7 +10,7 @@ public class UserReadBooks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int urb_id;
+    private Integer urb_id;
 
     @JoinColumn(name = "user_id")
     @ManyToOne
