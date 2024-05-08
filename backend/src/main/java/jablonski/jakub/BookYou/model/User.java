@@ -3,6 +3,7 @@ package jablonski.jakub.BookYou.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -35,11 +36,11 @@ public class User implements UserDetails {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_types",
             joinColumns = {@JoinColumn( name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "type_id")})
-    private Set<Type> roles = new HashSet<>();
+    private Set<Type> types = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "user_to_read_books",
@@ -49,31 +50,33 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return types.stream()
+                .map(t -> new SimpleGrantedAuthority(t.getName()))
+                .toList();
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return email;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

@@ -1,10 +1,16 @@
 package jablonski.jakub.BookYou.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "types")
 public class Type {
 
@@ -14,4 +20,7 @@ public class Type {
 
     @Column(name = "type_name", nullable = false)
     private String name;
+
+    @ManyToMany(mappedBy = "types")
+    private Set<User> users;
 }
