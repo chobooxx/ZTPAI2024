@@ -1,13 +1,17 @@
 package jablonski.jakub.BookYou.repository;
 
 import jablonski.jakub.BookYou.model.Book;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 public interface BookRepository  extends JpaRepository<Book, Integer> {
 
-//    @Query("SELECT b FROM Book b WHERE b.book_id in (SELECT urs.book.book_id FROM UserReadBooks urs where urs.user.userId = 1)")
-//    List<Book> findUserReadBooks(Integer id);
+    @Query("SELECT b FROM Book b WHERE b.book_id IN (SELECT urs.book.id FROM UserReadBooks urs WHERE urs.user.id = 1)")
+    List<Book> findUserReadBooks();
+
 }
