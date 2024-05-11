@@ -85,7 +85,7 @@ const LoginPage = () => {
     <div className="over-conteriner">
       <div className="container">
         <div className="logo">
-          <img id="logoDesktop" src="../../../img/logo.svg" />
+          <img alt="" id="logoDesktop" src="../../../img/logo.svg" />
         </div>
 
         <div className="login-container">
