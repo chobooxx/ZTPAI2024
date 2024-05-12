@@ -9,7 +9,7 @@ const HomePageRecommendedBook = () => {
       <div className="book-cover-container">
         <img
           alt=""
-          src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1655988385l/40121378.jpg"
+          src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1371834025i/17157681.jpg"
         />
       </div>
       <div className="book-info-conatiner">

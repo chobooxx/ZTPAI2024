@@ -1,17 +1,17 @@
-INSERT INTO users (email, name, password, surname)
-VALUES ('maciek@gmail.com', 'Lionel', '12345', 'Messi'),
-       ('kuba@gmail.com', 'Cristiano', '12345', 'Ronaldo'),
-       ('bla', 'bla', 'bla', 'bla');
-
-INSERT INTO books (title, author, description, isbn, rating)
-VALUES ('Władca Pierścieni', 'J.R.R. Tolkien',
-        'Epicka powieść fantasy o podróży hobbita Froda Bagginsa, mającej na celu zniszczenie Potężnego Pierścienia.',
-        '9788373191723', 5), 
-        ('Harry Potter i Kamień Filozoficzny', 'J.K. Rowling',
-        'Pierwsza część serii o młodym czarodzieju Harrym Potterze i jego przygodach w Hogwarcie.',
-        '9788372780147', 4);
-
-INSERT INTO user_read_books (user_id, book_id, read_date, liked)
-VALUES  (1, 1, NOW(), true),
-        (2, 2, NOW(), false),
-        (1, 2, NOW(), true);
+INSERT INTO books (title, author, photo, description, isbn, rating)
+VALUES
+    ('To Kill a Mockingbird', 'Harper Lee', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1522356687i/38359009.jpg', 'A classic novel set in the American South, addressing themes of racism and morality.', '9780061120084', 4),
+    ('The Great Gatsby', 'F. Scott Fitzgerald', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1353640223i/16165773.jpg', 'A tale of love, ambition, and tragedy set in the roaring twenties.', '9780743273565', 4),
+    ('Pride and Prejudice', 'Jane Austen', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1320399351i/1885.jpg', 'A timeless romance novel that explores societal expectations and the complexities of love.', '9780141439518', 5),
+    ('The Catcher in the Rye', 'J.D. Salinger', 'https://m.media-amazon.com/images/I/91HPG31dTwL._AC_UF894,1000_QL80_DpWeblab_.jpg', 'A coming-of-age story following Holden Caulfield as he navigates adolescence and alienation.', '9780316769488', 4),
+    ('1984', 'George Orwell', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327144697i/3744438.jpg', 'A dystopian novel depicting a totalitarian society under constant surveillance and thought control.', '9780451524935', 5),
+    ('To the Lighthouse', 'Virginia Woolf', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639106809i/59716.jpg', 'A modernist novel that explores themes of time, memory, and the human condition.', '9780156907392', 4),
+    ('Brave New World', 'Aldous Huxley', 'https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1640548550l/58444853.jpg', 'A futuristic novel portraying a society controlled by technology and conditioning.', '9780060850524', 4),
+    ('Jane Eyre', 'Charlotte Brontë', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1692725440i/197321006.jpg', 'A Gothic romance novel following the journey of an orphaned governess.', '9780142437209', 4),
+    ('The Picture of Dorian Gray', 'Oscar Wilde', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1695228548i/124267178.jpg', 'A philosophical novel about the consequences of vanity and moral corruption.', '9780141439570', 4),
+    ('Moby-Dick', 'Herman Melville', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327940656i/153747.jpg', 'An epic tale of obsession and revenge set against the backdrop of whaling.', '9780142437247', 3),
+    ('Frankenstein', 'Mary Shelley', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1631088473i/35031085.jpg', 'A groundbreaking science fiction novel exploring themes of creation and humanity.', '9780141439471', 4),
+    ('The Hobbit', 'J.R.R. Tolkien', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1374681632i/659469.jpg', 'A fantasy adventure novel following the journey of Bilbo Baggins.', '9780618260300', 5),
+    ('The Lord of the Rings', 'J.R.R. Tolkien', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654215925i/61215351.jpg', 'An epic fantasy trilogy set in the fictional world of Middle-earth.', '9780618517657', 5),
+    ('Anna Karenina', 'Leo Tolstoy', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1678287397i/85797140.jpg', 'A Russian classic exploring themes of love, infidelity, and societal norms.', '9780143035008', 4),
+    ('Crime and Punishment', 'Fyodor Dostoevsky', 'https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1382846449i/7144.jpg', 'A psychological thriller following the moral dilemmas of a young student.', '9780679734505', 4);
