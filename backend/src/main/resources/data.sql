@@ -1,6 +1,7 @@
 INSERT INTO users (email, name, password, surname)
 VALUES ('maciek@gmail.com', 'Lionel', '12345', 'Messi'),
-       ('kuba@gmail.com', 'Cristiano', '12345', 'Ronaldo');
+       ('kuba@gmail.com', 'Cristiano', '12345', 'Ronaldo'),
+       ('bla', 'bla', 'bla', 'bla');
 
 INSERT INTO books (title, author, description, isbn, rating)
 VALUES ('Władca Pierścieni', 'J.R.R. Tolkien',

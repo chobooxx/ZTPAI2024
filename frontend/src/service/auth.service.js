@@ -18,7 +18,7 @@ const login = (email, password) => {
       password,
     })
     .then((response) => {
-      if (response.data.accessToken) {
+      if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
 
@@ -26,8 +26,14 @@ const login = (email, password) => {
     });
 };
 
-const logout = () => {
-  localStorage.removeItem("user");
+const logout = async () => {
+  try {
+    localStorage.removeItem("user");
+    localStorage.clear();
+    await axios.post("http://localhost:8080/api/v1/auth/logout");
+  } catch (error) {
+    console.error("Error:", error);
+  }
 };
 
 const getCurrentUser = () => {

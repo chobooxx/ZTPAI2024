@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "./NavigationBar.css";
+// import "./NavigationBar.css";
 import AuthService from "../../service/auth.service";
 
 const NavigationBar = () => {
@@ -11,6 +11,9 @@ const NavigationBar = () => {
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
+
+    console.log(user);
+    console.log("aaaaaaaaaaaa");
 
     if (user) {
       setCurrentUser(user);
@@ -41,10 +44,10 @@ const NavigationBar = () => {
         <img alt="" src="../../../img/me.svg" />
         <div>ME</div>
       </Link>
-      <Link to="/" id="logoutButton" className="menu_element" onClick={logOut}>
+      <a href="/" id="logoutButton" className="menu_element" onClick={logOut}>
         <img alt="" src="../../../img/logout.svg" />
         <div className="logout">LOG OUT</div>
-      </Link>
+      </a>
     </div>
   );
 };

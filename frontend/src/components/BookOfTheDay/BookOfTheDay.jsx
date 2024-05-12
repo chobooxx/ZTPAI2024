@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./BookOfTheDay.css";
 import { Link } from "react-router-dom";
 
@@ -14,6 +14,7 @@ const BookOfTheDay = () => {
             src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1655988385l/40121378.jpg"
           />
         </Link>
+
         <div className="content_main_right_bottom_horizontal">
           <h1>name</h1>
           <h2>author</h2>

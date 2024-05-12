@@ -1,59 +1,69 @@
 .nav_bar {
-    /* background-color: green; */
-    height: 100vh;
-    width: 15%;
-    margin: 0;
+  /* background-color: green; */
+  height: 100vh;
+  width: 15%;
+  margin: 0;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 #logoMoblie {
-    margin-bottom: 1.8em;
-    /* max-width: 100%;
+  margin-bottom: 1.8em;
+  /* max-width: 100%;
     height: auto; */
 }
 
 .nav_bar a img {
-    margin: 0 0.3em 0 0;
+  margin: 0 0.3em 0 0;
 }
 
 .nav_bar img {
-    max-width: 100%;
-    margin: 1em 0;
+  max-width: 100%;
+  margin: 1em 0;
 }
-
 
 .menu_element {
-    color: #558F6B;
-    font-size: 1.2em;
-    margin: 1em 0;
-    width: 100%;
-    text-decoration: none;
-    margin-left: 4.4em;
+  color: #558f6b;
+  font-size: 1.2em;
+  margin: 1em 0;
+  width: 100%;
+  text-decoration: none;
+  margin-left: 4.4em;
 
-    display: flex;
-    align-items: center;
-    letter-spacing: 0.07em;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.07em;
 }
 
-.menu_element:visited { text-decoration: none; color:#558F6B; }
-.menu_element:hover { text-decoration: none; color:#558F6B; }
-.menu_element:focus { text-decoration: none; color:#558F6B; }
-.menu_element:active { text-decoration: none; color:#558F6B }
+.menu_element:visited {
+  text-decoration: none;
+  color: #558f6b;
+}
+.menu_element:hover {
+  text-decoration: none;
+  color: #558f6b;
+}
+.menu_element:focus {
+  text-decoration: none;
+  color: #558f6b;
+}
+.menu_element:active {
+  text-decoration: none;
+  color: #558f6b;
+}
 
 .menu_element img {
-    margin-right: 3px;
-
+  margin-right: 3px;
 }
 
 #logoutButton {
-    position: absolute;
-    bottom: 0;
+  position: absolute;
+  bottom: 0;
 }

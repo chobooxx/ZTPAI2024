@@ -9,6 +9,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import BookPage from "./components/BookPage/BookPage";
+import LoggedRoutes from "./utils/LoggedRoutes";
 
 function App() {
   return (
@@ -27,9 +28,11 @@ function App() {
         <Route element={<HomePage />} path="/homepage" />
         <Route element={<CategoriesPage />} path="/categories" />
       </Route>
-      <Route element={<LoginPage />} path="/" />
-      <Route element={<LoginPage />} path="/login" />
-      <Route path="/register" element={<RegisterPage />} />
+      <Route element={<LoggedRoutes />}>
+        <Route element={<LoginPage />} path="/" />
+        <Route element={<LoginPage />} path="/login" />
+        <Route element={<RegisterPage />} path="/register" />
+      </Route>
     </Routes>
   );
 }
