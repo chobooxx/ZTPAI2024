@@ -81,7 +81,7 @@ const LoginPage = () => {
         <div className="login-container">
           <Form onSubmit={handleLogin} ref={form}>
             <Input
-              type="password"
+              type="text"
               className="login-input"
               name="email"
               value={email}

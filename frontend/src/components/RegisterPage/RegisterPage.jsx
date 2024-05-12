@@ -161,7 +161,9 @@ const RegisterPage = () => {
                   placeholder="Password"
                 />
 
-                <button className="button-auth">Register</button>
+                <button className="button-auth">
+                  <p>Register</p>
+                </button>
               </div>
             )}
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
