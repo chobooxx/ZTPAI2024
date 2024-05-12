@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AuthService from "../../service/auth.service";
 
 import "../LoginPage/LoginPage.css";
+import "./RegisterPage.css";
 
 const required = (value) => {
   if (!value) {
@@ -120,15 +121,7 @@ const RegisterPage = () => {
           <img alt="" id="logoDesktop" src="../../../img/logo.svg" />
         </div>
 
-        <div className="login-container">
-          {/* <form action="register" method="POST">
-            <input name="email" type="text" placeholder="Email" />
-            <input name="password" type="password" placeholder="Password" />
-            <input name="name" type="text" placeholder="Name" />
-            <input name="surname" type="text" placeholder="Surname" />
-            <button type="submit">REGISTER</button>
-          </form> */}
-
+        <div className="register-container">
           <Form onSubmit={handleRegister} ref={form}>
             {!successful && (
               <div>
@@ -171,17 +164,6 @@ const RegisterPage = () => {
                 <button className="button-auth">Register</button>
               </div>
             )}
-
-            {/* {message && (
-              <div className="">
-                <div
-                  className={successful ? "login_errors" : "login_errors"}
-                  role="alert"
-                >
-                  {message}
-                </div>
-              </div>
-            )} */}
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
         </div>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "./BookOfTheDay.css";
+import React from "react";
 import { Link } from "react-router-dom";
+
+import "./BookOfTheDay.css";
 
 const BookOfTheDay = () => {
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -80,8 +80,6 @@ const LoginPage = () => {
 
         <div className="login-container">
           <Form onSubmit={handleLogin} ref={form}>
-            {/* <input name="email" type="text" placeholder="Email" /> */}
-
             <Input
               type="text"
               name="email"
@@ -90,9 +88,6 @@ const LoginPage = () => {
               validation={[required]}
               placeholder="Email"
             />
-
-            {/* <input name="password" type="password" placeholder="Password" /> */}
-
             <Input
               type="password"
               name="password"
@@ -101,29 +96,23 @@ const LoginPage = () => {
               validations={[required]}
               placeholder="Password"
             />
-
-            {/* <button>LOGIN</button> */}
-
-            {/* <Link href="" className="add-info">
-              Forgot Password?
-            </Link>
-            <Link href="register" className="add-info">
-              Don't have an account? Sign up!
-            </Link> */}
-
             <button className="button-auth" disabled={loading}>
-              {loading && <span className=""></span>}
-              <span>Login</span>
+              <p>LOGIN</p>
             </button>
 
             {message && (
-              <div className="">
-                <div className="" role="alert">
-                  {message}
-                </div>
+              <div className="login-alert" role="alert">
+                <p>{message}</p>
               </div>
             )}
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
+
+            <Link to="" className="add-info">
+              Forgot Password?
+            </Link>
+            <Link to="/register" className="add-info">
+              Don't have an account? Sign up!
+            </Link>
           </Form>
         </div>
       </div>
