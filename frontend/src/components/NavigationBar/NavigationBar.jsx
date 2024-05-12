@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+// { useState, useEffect }
 import { Link } from "react-router-dom";
 
 // import "./NavigationBar.css";
 import AuthService from "../../service/auth.service";
 
 const NavigationBar = () => {
-  // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  // const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  //  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  //  const [showAdminBoard, setShowAdminBoard] = useState(false);
+  // const [currentUser, setCurrentUser] = useState(undefined);
 
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
+  // useEffect(() => {
+  //   const user = AuthService.getCurrentUser();
 
-    console.log(user);
-    console.log("aaaaaaaaaaaa");
+  //   if (user) {
+  //     setCurrentUser(user);
+  //      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
+  //      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
+  //   }
 
-    if (user) {
-      setCurrentUser(user);
-      // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-    }
-  }, []);
+  //   console.log(currentUser);
+  // }, []);
   const logOut = () => {
     AuthService.logout();
   };
