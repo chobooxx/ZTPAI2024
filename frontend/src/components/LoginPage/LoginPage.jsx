@@ -81,7 +81,8 @@ const LoginPage = () => {
         <div className="login-container">
           <Form onSubmit={handleLogin} ref={form}>
             <Input
-              type="text"
+              type="password"
+              className="login-input"
               name="email"
               value={email}
               onChange={onChangeEmail}
@@ -91,6 +92,7 @@ const LoginPage = () => {
             <Input
               type="password"
               name="password"
+              className="login-input"
               value={password}
               onChange={onChangePassword}
               validations={[required]}
