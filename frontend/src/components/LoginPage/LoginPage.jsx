@@ -12,18 +12,8 @@ import "./LoginPage.css";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="" role="alert">
         This field is required!
-      </div>
-    );
-  }
-};
-
-const email = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
       </div>
     );
   }
@@ -61,7 +51,7 @@ const LoginPage = () => {
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(email, password).then(
         () => {
-          navigate("/profile");
+          navigate("/homepage");
           window.location.reload();
         },
         (error) => {
@@ -109,9 +99,11 @@ const LoginPage = () => {
               value={password}
               onChange={onChangePassword}
               validations={[required]}
+              placeholder="Password"
             />
 
-            <button>LOGIN</button>
+            {/* <button>LOGIN</button> */}
+
             {/* <Link href="" className="add-info">
               Forgot Password?
             </Link>
@@ -119,18 +111,14 @@ const LoginPage = () => {
               Don't have an account? Sign up!
             </Link> */}
 
-            <div className="form-group">
-              <button className="btn btn-primary btn-block" disabled={loading}>
-                {loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
-                <span>Login</span>
-              </button>
-            </div>
+            <button className="button-auth" disabled={loading}>
+              {loading && <span className=""></span>}
+              <span>Login</span>
+            </button>
 
             {message && (
-              <div className="form-group">
-                <div className="alert alert-danger" role="alert">
+              <div className="">
+                <div className="" role="alert">
                   {message}
                 </div>
               </div>
