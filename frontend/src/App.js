@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
 import AuthService from "./service/auth.service";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/LoginPage/LoginPage";
@@ -11,22 +11,6 @@ import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import BookPage from "./components/BookPage/BookPage";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(undefined);
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    if (user) {
-      setCurrentUser(user);
-      // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-    }
-  }, []);
-
-  const logOut = () => {
-    AuthService.logout();
-  };
-
   return (
     // <>
     //   <Routes>
@@ -39,18 +23,13 @@ function App() {
     //   </Routes>
     // </>
     <Routes>
-      <Route path="/" element={<LoginPage />} />
+      <Route element={<PrivateRoutes />}>
+        <Route element={<HomePage />} path="/homepage" />
+        <Route element={<CategoriesPage />} path="/categories" />
+      </Route>
+      <Route element={<LoginPage />} path="/" />
+      <Route element={<LoginPage />} path="/login" />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-      {{} ? (
-        <>
-          <Route path="/homepage" element={<HomePage />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/book" element={<BookPage />} />
-        </>
-      ) : (
-        <Navigate to="/" replace />
-      )}
     </Routes>
   );
 }
