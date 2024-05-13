@@ -7,11 +7,11 @@ import HomePageRecommendedBook from "../HomePageRecommendedBook/HomePageRecommen
 
 import "./HomePage.css";
 
-import AuthService from "../../service/auth.service";
 import authHeader from "../../service/auth-header";
 
 const HomePage = () => {
   const [topThreeRatedBooks, setTopThreeRatedBooks] = useState([]);
+  const [recommendedBooks, setRecommendedBooks] = useState([]);
 
   useEffect(() => {
     axios
@@ -26,15 +26,28 @@ const HomePage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/v1/book/random", {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        setRecommendedBooks(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching restaurants:", error);
+      });
+  }, []);
+
   return (
     <>
       <NavigationBar />
       <ContentBox>
         <div className="content_main_top_title">Recommendations:</div>
         <div className="content_main_top">
-          <HomePageRecommendedBook />
-          <HomePageRecommendedBook />
-          <HomePageRecommendedBook />
+          {recommendedBooks.map((book) => (
+            <HomePageRecommendedBook book={book} />
+          ))}
         </div>
         <div className="content_main_top_title">Best rated books:</div>
         <div className="content_main_bot">

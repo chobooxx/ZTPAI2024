@@ -9,7 +9,7 @@ const HomePageRecommendedBook = ({ book }) => {
     <Link to="/book" className="recommended-book-container">
       {/* <div className="recommended-book-container"> */}
       <div className="book-cover-container">
-        <img alt="Book cover photo" src={book.photo} />
+        <img alt="Book cover" src={book.photo} />
       </div>
       <div className="book-info-conatiner">
         <h1>{book.title}</h1>

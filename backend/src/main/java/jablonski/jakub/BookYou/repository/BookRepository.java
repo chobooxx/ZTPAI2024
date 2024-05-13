@@ -15,9 +15,9 @@ public interface BookRepository  extends JpaRepository<Book, Integer> {
 
     List<Book> findTop3ByOrderByRatingDesc();
 
+    @Query("SELECT b from Book b ORDER BY RANDOM() LIMIT 3")
+    List<Book> findRandomThreeBooks();
+//    @Query(value = "SELECT * FROM Book ORDER BY RAND() LIMIT 3", nativeQuery = true)
 //    @Query("SELECT b FROM Book b WHERE b.book_id IN (SELECT urs.book.id FROM UserReadBooks urs WHERE urs.user.id = 1)")
 //    List<Book> findUserReadBooks();
-
-
-
 }

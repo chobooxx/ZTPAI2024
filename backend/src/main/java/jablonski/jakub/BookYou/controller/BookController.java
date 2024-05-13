@@ -4,6 +4,7 @@ import jablonski.jakub.BookYou.dto.BookDto;
 import jablonski.jakub.BookYou.mapper.BookMapper;
 import jablonski.jakub.BookYou.model.Book;
 import jablonski.jakub.BookYou.service.BookService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,16 @@ public class BookController {
     public ResponseEntity<List<BookDto>> getBestRating() {
         return ResponseEntity.ok(
                 bookService.getBestRating()
+                        .stream()
+                        .map(book -> bookMapper.mapToBookDto(book))
+                        .toList()
+        );
+    }
+
+    @GetMapping("/random")
+    public ResponseEntity<List<BookDto>> getRandomBooks() {
+        return ResponseEntity.ok(
+                bookService.getRandomBooks()
                         .stream()
                         .map(book -> bookMapper.mapToBookDto(book))
                         .toList()

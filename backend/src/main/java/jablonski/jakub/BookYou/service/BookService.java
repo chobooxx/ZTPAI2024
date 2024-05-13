@@ -5,6 +5,7 @@ import jablonski.jakub.BookYou.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -14,5 +15,9 @@ public class BookService {
 
     public List<Book> getBestRating() {
         return bookRepository.findTop3ByOrderByRatingDesc();
+    }
+
+    public List<Book> getRandomBooks() {
+        return bookRepository.findRandomThreeBooks();
     }
 }
