@@ -18,11 +18,15 @@
   padding: 1em;
   justify-content: center;
   overflow-wrap: break-word;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-cover-container img {
-  max-height: auto;
-  max-width: 90%;
+  max-height: 95%;
+  max-width: auto;
 }
 
 .book-info-conatiner {
@@ -32,7 +36,6 @@
   flex-direction: column;
   gap: 2em;
   overflow: wrap;
-
   position: relative;
 }
 
