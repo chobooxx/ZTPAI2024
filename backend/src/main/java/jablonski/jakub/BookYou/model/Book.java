@@ -1,13 +1,17 @@
 package jablonski.jakub.BookYou.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "books")
 public class Book {
 
