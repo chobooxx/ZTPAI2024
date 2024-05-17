@@ -22,7 +22,7 @@ const HomePage = () => {
         setTopThreeRatedBooks(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching restaurants:", error);
+        console.error("Error fetching books:", error);
       });
   }, []);
 
@@ -35,7 +35,7 @@ const HomePage = () => {
         setRecommendedBooks(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching restaurants:", error);
+        console.error("Error fetching books:", error);
       });
   }, []);
 

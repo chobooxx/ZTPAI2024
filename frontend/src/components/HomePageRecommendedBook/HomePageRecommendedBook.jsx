@@ -6,8 +6,7 @@ import "./HomePageRecommendedBook.css";
 
 const HomePageRecommendedBook = ({ book }) => {
   return (
-    <Link to="/book" className="recommended-book-container">
-      {/* <div className="recommended-book-container"> */}
+    <Link to={`/book/${book.book_id}`} className="recommended-book-container">
       <div className="book-cover-container">
         <img alt="Book cover" src={book.photo} />
       </div>
@@ -19,7 +18,6 @@ const HomePageRecommendedBook = ({ book }) => {
           <img alt="" className="" src="../../../img/book_rating_filled.svg" />
         </div>
       </div>
-      {/* </div> */}
     </Link>
   );
 };

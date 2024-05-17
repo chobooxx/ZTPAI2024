@@ -166,6 +166,14 @@ const RegisterPage = () => {
                 </button>
               </div>
             )}
+
+            {message && (
+              <div className="">
+                <div className={successful ? "" : ""} role="alert">
+                  {message}
+                </div>
+              </div>
+            )}
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
         </div>

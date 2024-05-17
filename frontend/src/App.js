@@ -8,6 +8,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import LoggedRoutes from "./utils/LoggedRoutes";
+import BookPage from "./components/BookPage/BookPage";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ function App() {
       <Route element={<PrivateRoutes />}>
         <Route element={<HomePage />} path="/homepage" />
         <Route element={<CategoriesPage />} path="/categories" />
+        <Route element={<BookPage />} path="/book/:id" />
       </Route>
       <Route element={<LoggedRoutes />}>
         <Route element={<LoginPage />} path="/" />
