@@ -68,6 +68,10 @@ public class JwtService {
                 .getBody();
     }
 
+    public String getEmailFromToken(String token) {
+        return extractAllClaims(token).get("email", String.class);
+    }
+
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);

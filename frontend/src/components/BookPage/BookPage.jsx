@@ -1,24 +1,37 @@
 import React from "react";
-import NavigationBar from "../NavigationBar/NavigationBar";
+import axios from "axios";
 import ContentBox from "../ContentBox/ContentBox";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Button, useButton } from "@mui/base/Button";
 
 import "./BookPage.css";
 
 import authHeader from "../../service/auth-header";
+import NavigationBar from "../NavigationBar/NavigationBar";
+
+const fetchBookStatus = async (bookId) => {
+  axios
+    .get(`http://localhost:8080/api/v1/book/userbookinfo/${bookId}`, {
+      headers: authHeader(),
+    })
+    .then((response) => {
+      return response.data;
+    });
+};
 
 const BookPage = () => {
-  // const {
-  //   params: { book_id },
-  // } = match;
+  const [bookStatus, setBookStatus] = useState({
+    isRead: false,
+    isInReadingList: false,
+    isLiked: false,
+  });
   const [bookInformation, setBookInformation] = useState([]);
-  const { book_id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/v1/book/bookinfo/${book_id}`, {
+      .get(`http://localhost:8080/api/v1/book/bookinfo/${id}`, {
         headers: authHeader(),
       })
       .then((response) => {
@@ -27,9 +40,16 @@ const BookPage = () => {
       .catch((error) => {
         console.error("Error fetching :", error);
       });
-  }, []);
+  }, [id]);
 
-  console.log(bookInformation.photo);
+  useEffect(() => {
+    const getStatus = async () => {
+      const status = await fetchBookStatus(bookInformation.bookId);
+      setBookStatus(status);
+    };
+
+    // getStatus();
+  }, [bookInformation.bookId]);
 
   return (
     <>
@@ -40,12 +60,17 @@ const BookPage = () => {
 
           <div className="content_description">
             <div className="content_description_icons">
-              <div className="content_description_element">
+              {/* <div className="content_description_element">
                 <img alt="" src="../../../img/book_read.svg" />
                 <p>Add to read books</p>
-              </div>
+              </div> */}
 
-              <div className="content_description_element">
+              <Button className="content_description_element">
+                <img alt="" src="../../../img/book_read.svg" />
+                <p>Add to read books</p>
+              </Button>
+
+              {/* <div className="content_description_element">
                 <img alt="" src="../../../img/book_add_to_read.svg" />
                 <p>Add to to-read list</p>
               </div>
@@ -53,21 +78,28 @@ const BookPage = () => {
               <div className="content_description_element">
                 <img alt="" src="../../../img/book_rating.svg" />
                 <p>Reccomend this book</p>
-              </div>
+              </div> */}
             </div>
 
             <div className="content_description_names">
-              <div className="content_description_names_element">Title:</div>
-              <div className="content_description_names_element">Author: </div>
               <div className="content_description_names_element">
-                Rating: 3%
+                Title: {bookInformation.title}
+              </div>
+              <div className="content_description_names_element">
+                Author: {bookInformation.author}
+              </div>
+              <div className="content_description_names_element">
+                Isbn: {bookInformation.isbn}
+              </div>
+              <div className="content_description_names_element">
+                Rating: {bookInformation.rating}%
               </div>
             </div>
           </div>
         </div>
         <div className="content_book_bot">
           <h1>Description</h1>
-          <h3>dsfsadfasdfsad </h3>
+          <h3>{bookInformation.description}</h3>
         </div>
       </ContentBox>
     </>

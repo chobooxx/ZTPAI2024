@@ -1,16 +1,17 @@
 package jablonski.jakub.BookYou.controller;
 
 import jablonski.jakub.BookYou.dto.BookDto;
+import jablonski.jakub.BookYou.dto.UserInfoResponse;
 import jablonski.jakub.BookYou.mapper.BookMapper;
 import jablonski.jakub.BookYou.model.Book;
+import jablonski.jakub.BookYou.repository.UserRepository;
 import jablonski.jakub.BookYou.service.BookService;
+import jablonski.jakub.BookYou.service.JwtService;
+import jablonski.jakub.BookYou.service.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookController {
     private final BookService bookService;
+    private final JwtService jwtService;
     private final BookMapper bookMapper;
 
     @GetMapping("/bookinfo/{bookId}")

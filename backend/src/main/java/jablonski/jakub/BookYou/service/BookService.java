@@ -1,13 +1,15 @@
 package jablonski.jakub.BookYou.service;
 
+import jablonski.jakub.BookYou.dto.BookDto;
+import jablonski.jakub.BookYou.dto.UserInfoResponse;
 import jablonski.jakub.BookYou.exception.BookNotFoundException;
 import jablonski.jakub.BookYou.model.Book;
+import jablonski.jakub.BookYou.model.User;
 import jablonski.jakub.BookYou.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
