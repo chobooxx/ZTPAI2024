@@ -10,24 +10,25 @@ import "./BookPage.css";
 import authHeader from "../../service/auth-header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
-const fetchBookStatus = async (bookId) => {
-  axios
-    .get(`http://localhost:8080/api/v1/book/userbookinfo/${bookId}`, {
-      headers: authHeader(),
-    })
-    .then((response) => {
-      return response.data;
-    });
-};
-
 const BookPage = () => {
   const [bookStatus, setBookStatus] = useState({
-    isRead: false,
-    isInReadingList: false,
-    isLiked: false,
+    read: false,
+    toRead: false,
+    liked: false,
   });
   const [bookInformation, setBookInformation] = useState([]);
   const { id } = useParams();
+
+  const fetchBookStatus = async (bookId) => {
+    axios
+      .get(`http://localhost:8080/api/v1/userbookinfo/${bookId}`, {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        setBookStatus(response.data);
+        // return response.data;
+      });
+  };
 
   useEffect(() => {
     axios
@@ -42,14 +43,30 @@ const BookPage = () => {
       });
   }, [id]);
 
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8080/api/v1/userbookinfo/${id}`, {
+  //       headers: authHeader(),
+  //     })
+  //     .then((response) => {
+  //       setBookStatus(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching :", error);
+  //     });
+  // }, [id]);
+
   useEffect(() => {
     const getStatus = async () => {
-      const status = await fetchBookStatus(bookInformation.bookId);
-      setBookStatus(status);
+      // const status = await fetchBookStatus(id);
+      await fetchBookStatus(id);
+      // setBookStatus(status);
     };
 
-    // getStatus();
-  }, [bookInformation.bookId]);
+    // console.log(bookStatus.read);
+
+    getStatus();
+  }, [id]);
 
   return (
     <>

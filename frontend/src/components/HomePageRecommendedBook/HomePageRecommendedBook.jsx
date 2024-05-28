@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "./HomePageRecommendedBook.css";
 
 const HomePageRecommendedBook = ({ book }) => {
-  console.log(book.book_id);
   return (
     <Link to={`/book/${book.book_id}`} className="recommended-book-container">
       <div className="book-cover-container">

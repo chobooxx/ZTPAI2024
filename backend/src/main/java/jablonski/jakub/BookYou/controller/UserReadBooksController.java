@@ -29,10 +29,11 @@ public class UserReadBooksController {
     private final JwtService jwtService;
 
     @GetMapping("/{bookId}")
-    public ResponseEntity<UserInfoResponse> gerUserBookInfo(Integer bookId) {
+    public ResponseEntity<UserInfoResponse> gerUserBookInfo(@PathVariable int bookId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         Integer userId = userService.getUserIdByEmail(email);
+        System.out.println(userId);
 
         return ResponseEntity.ok(
                 userReadBooksService.getUserBookInfo(userId, bookId)
