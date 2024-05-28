@@ -1,11 +1,16 @@
 package jablonski.jakub.BookYou.service;
 
 import jablonski.jakub.BookYou.dto.UserInfoResponse;
+import jablonski.jakub.BookYou.model.Book;
+import jablonski.jakub.BookYou.model.User;
+import jablonski.jakub.BookYou.model.UserReadBooks;
 import jablonski.jakub.BookYou.repository.UserReadBooksRepository;
 import jablonski.jakub.BookYou.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -25,5 +30,18 @@ public class UserReadBooksService {
                 .isLiked(res3)
                 .build();
 
+    }
+
+    public void save(User user, Book book) {
+        LocalDateTime now = LocalDateTime.now();
+
+        userReadBooksRepository.save(
+                UserReadBooks.builder()
+                        .book(book)
+                        .user(user)
+                        .readDate(now)
+                        .liked(false)
+                        .build()
+        );
     }
 }

@@ -17,4 +17,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT COUNT(b) > 0 FROM User u JOIN u.toReadBooks b WHERE u.userId = :userId AND b.book_id = :bookId")
     boolean userToRead(Integer userId, Integer bookId);
+
+    User getUserByEmail(String email);
 }

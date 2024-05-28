@@ -11,22 +11,17 @@ import authHeader from "../../service/auth-header";
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 const BookPage = () => {
-  const [bookStatus, setBookStatus] = useState({
-    read: false,
-    toRead: false,
-    liked: false,
-  });
+  const [bookStatus, setBookStatus] = useState({});
   const [bookInformation, setBookInformation] = useState([]);
   const { id } = useParams();
 
   const fetchBookStatus = async (bookId) => {
     axios
-      .get(`http://localhost:8080/api/v1/userbookinfo/${bookId}`, {
+      .get(`http://localhost:8080/api/v1/userbook/${bookId}`, {
         headers: authHeader(),
       })
       .then((response) => {
         setBookStatus(response.data);
-        // return response.data;
       });
   };
 
@@ -43,30 +38,44 @@ const BookPage = () => {
       });
   }, [id]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8080/api/v1/userbookinfo/${id}`, {
-  //       headers: authHeader(),
-  //     })
-  //     .then((response) => {
-  //       setBookStatus(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching :", error);
-  //     });
-  // }, [id]);
-
   useEffect(() => {
     const getStatus = async () => {
-      // const status = await fetchBookStatus(id);
       await fetchBookStatus(id);
-      // setBookStatus(status);
     };
-
-    // console.log(bookStatus.read);
 
     getStatus();
   }, [id]);
+
+  const handleAddToRead = () => {
+    axios
+      .put(
+        `http://localhost:8080/api/v1/userbook/add/${id}`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(() => {
+        setBookStatus((prevStatus) => ({
+          ...prevStatus,
+          read: true,
+          toRead: false,
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching :", error);
+      });
+  };
+
+  const handleAddToToRead = () => {
+    // Dodaj książkę do listy do przeczytania - tutaj zaktualizuj stan i API
+    setBookStatus((prevStatus) => ({ ...prevStatus, toRead: true }));
+  };
+
+  const handleLike = () => {
+    // Polub książkę - tutaj zaktualizuj stan i API
+    setBookStatus((prevStatus) => ({ ...prevStatus, liked: true }));
+  };
 
   return (
     <>
@@ -77,25 +86,33 @@ const BookPage = () => {
 
           <div className="content_description">
             <div className="content_description_icons">
-              {/* <div className="content_description_element">
-                <img alt="" src="../../../img/book_read.svg" />
-                <p>Add to read books</p>
-              </div> */}
-
-              <Button className="content_description_element">
+              <Button
+                onClick={handleAddToRead}
+                className="content_description_element"
+              >
                 <img alt="" src="../../../img/book_read.svg" />
                 <p>Add to read books</p>
               </Button>
 
-              {/* <div className="content_description_element">
-                <img alt="" src="../../../img/book_add_to_read.svg" />
-                <p>Add to to-read list</p>
-              </div>
+              {!bookStatus.read && (
+                <button
+                  onClick={handleAddToToRead}
+                  className="content_description_element"
+                >
+                  <img alt="" src="../../../img/book_add_to_read.svg" />
+                  <p>Add to to-read list</p>
+                </button>
+              )}
 
-              <div className="content_description_element">
-                <img alt="" src="../../../img/book_rating.svg" />
-                <p>Reccomend this book</p>
-              </div> */}
+              {bookStatus.read && (
+                <button
+                  onClick={handleLike}
+                  className="content_description_element"
+                >
+                  <img alt="" src="../../../img/book_rating.svg" />
+                  <p>Like this book</p>
+                </button>
+              )}
             </div>
 
             <div className="content_description_names">

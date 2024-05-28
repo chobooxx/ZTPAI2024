@@ -17,4 +17,5 @@ public interface BookRepository  extends JpaRepository<Book, Integer> {
 
     @Query("SELECT b from Book b ORDER BY RANDOM() LIMIT 3")
     List<Book> findRandomThreeBooks();
+
 }
