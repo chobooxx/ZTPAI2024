@@ -10,7 +10,6 @@ import jablonski.jakub.BookYou.service.UserReadBooksService;
 import jablonski.jakub.BookYou.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +38,10 @@ public class UserReadBooksController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
         User user = userRepository.getUserByEmail(email);
+        Integer userId = userService.getUserIdByEmail(email);
         Optional<Book> book = bookRepository.findById(bookId);
+
+        user.removeFromToReadBooks(book.orElse(null));
 
         userReadBooksService.save(user, book.orElse(null));
     }

@@ -19,4 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     boolean userToRead(Integer userId, Integer bookId);
 
     User getUserByEmail(String email);
+
+//    @Query("DELETE FROM user_to_read_books WHERE userId = :userId AND book_id = :bookId")
+//    void deleteUserToReadBookPair(Integer userId, Integer bookId);
 }
