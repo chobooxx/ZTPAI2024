@@ -68,8 +68,20 @@ const BookPage = () => {
   };
 
   const handleAddToToRead = () => {
-    // Dodaj książkę do listy do przeczytania - tutaj zaktualizuj stan i API
-    setBookStatus((prevStatus) => ({ ...prevStatus, toRead: true }));
+    axios
+      .put(
+        `http://localhost:8080/api/v1/userbook/addToRead/${id}`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(() => {
+        setBookStatus((prevStatus) => ({ ...prevStatus, toRead: true }));
+      })
+      .catch((error) => {
+        console.error("Error fetching :", error);
+      });
   };
 
   const handleLike = () => {

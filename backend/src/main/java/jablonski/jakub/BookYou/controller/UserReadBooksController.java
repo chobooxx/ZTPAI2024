@@ -42,8 +42,21 @@ public class UserReadBooksController {
         Optional<Book> book = bookRepository.findById(bookId);
 
         user.removeFromToReadBooks(book.orElse(null));
+        userRepository.save(user);
 
         userReadBooksService.save(user, book.orElse(null));
+    }
+
+    @PutMapping("/addToRead/{bookId}")
+    public void  addUserToReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userRepository.getUserByEmail(email);
+
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        user.addToReadBooks(book.orElse(null));
+        userRepository.save(user);
     }
 
 
