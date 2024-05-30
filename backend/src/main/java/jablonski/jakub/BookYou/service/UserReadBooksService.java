@@ -44,4 +44,16 @@ public class UserReadBooksService {
                         .build()
         );
     }
+
+    public void userLikeReadBook(Integer userId, Integer bookId) {
+        userReadBooksRepository.userLikeReadBook(userId, bookId);
+    }
+
+    public void userUnLikeReadBook(Integer userId, Integer bookId) {
+        userReadBooksRepository.userUnLikeReadBook(userId, bookId);
+    }
+
+    public void deleteReadBook(Integer userId, Integer bookId) {
+        userReadBooksRepository.deleteReadBook(userId, bookId);
+    }
 }

@@ -85,8 +85,45 @@ const BookPage = () => {
   };
 
   const handleLike = () => {
-    // Polub książkę - tutaj zaktualizuj stan i API
-    setBookStatus((prevStatus) => ({ ...prevStatus, liked: true }));
+    if (bookStatus.liked) {
+      handleUnlike();
+    } else {
+      handleLikeBook();
+    }
+  };
+
+  const handleLikeBook = () => {
+    axios
+      .put(
+        `http://localhost:8080/api/v1/userbook/like/${id}`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(() => {
+        setBookStatus((prevStatus) => ({ ...prevStatus, liked: true }));
+      })
+      .catch((error) => {
+        console.error("Error liking:", error);
+      });
+  };
+
+  const handleUnlike = () => {
+    axios
+      .put(
+        `http://localhost:8080/api/v1/userbook/unlike/${id}`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(() => {
+        setBookStatus((prevStatus) => ({ ...prevStatus, liked: false }));
+      })
+      .catch((error) => {
+        console.error("Error liking:", error);
+      });
   };
 
   return (
@@ -94,36 +131,44 @@ const BookPage = () => {
       <NavigationBar />
       <ContentBox>
         <div className="content_book_top">
-          <img alt="" src={bookInformation.photo} />
+          <img alt="Book cover" src={bookInformation.photo} />
 
           <div className="content_description">
             <div className="content_description_icons">
               <Button
                 onClick={handleAddToRead}
-                className="content_description_element"
+                className={`content_description_element ${
+                  bookStatus.read ? "read" : ""
+                }`}
               >
                 <img alt="" src="../../../img/book_read.svg" />
-                <p>Add to read books</p>
+                <p>
+                  {bookStatus.read ? "You read that book" : "Add to read books"}
+                </p>
               </Button>
 
               {!bookStatus.read && (
-                <button
+                <Button
                   onClick={handleAddToToRead}
                   className="content_description_element"
                 >
                   <img alt="" src="../../../img/book_add_to_read.svg" />
                   <p>Add to to-read list</p>
-                </button>
+                </Button>
               )}
 
               {bookStatus.read && (
-                <button
+                <Button
                   onClick={handleLike}
-                  className="content_description_element"
+                  className={`content_description_element ${
+                    bookStatus.liked ? "read" : ""
+                  }`}
                 >
                   <img alt="" src="../../../img/book_rating.svg" />
-                  <p>Like this book</p>
-                </button>
+                  <p>
+                    {bookStatus.liked ? "You like this book" : "Like this book"}
+                  </p>
+                </Button>
               )}
             </div>
 

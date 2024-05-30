@@ -33,6 +33,10 @@
   align-items: center;
 }
 
+.content_description_element.read {
+  background-color: green;
+}
+
 .content_description_element img {
   max-height: 5em;
   width: auto;

@@ -25,40 +25,12 @@ import java.util.Optional;
 @RequestMapping("/api/v1/userbook")
 @RequiredArgsConstructor
 public class UserReadBooksController {
-    @Autowired
+
     private final UserReadBooksService userReadBooksService;
     private final UserService userService;
     private final JwtService jwtService;
     private final UserRepository userRepository;
-    @Autowired
-    private BookRepository bookRepository;
-
-    @PutMapping("/add/{bookId}")
-    public void  addUserReadBook(@PathVariable int bookId) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        User user = userRepository.getUserByEmail(email);
-        Integer userId = userService.getUserIdByEmail(email);
-        Optional<Book> book = bookRepository.findById(bookId);
-
-        user.removeFromToReadBooks(book.orElse(null));
-        userRepository.save(user);
-
-        userReadBooksService.save(user, book.orElse(null));
-    }
-
-    @PutMapping("/addToRead/{bookId}")
-    public void  addUserToReadBook(@PathVariable int bookId) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = auth.getName();
-        User user = userRepository.getUserByEmail(email);
-
-        Optional<Book> book = bookRepository.findById(bookId);
-
-        user.addToReadBooks(book.orElse(null));
-        userRepository.save(user);
-    }
-
+    private final BookRepository bookRepository;
 
     @GetMapping("/{bookId}")
     public ResponseEntity<UserInfoResponse> gerUserBookInfo(@PathVariable int bookId) {
@@ -69,5 +41,59 @@ public class UserReadBooksController {
         return ResponseEntity.ok(
                 userReadBooksService.getUserBookInfo(userId, bookId)
         );
+    }
+
+    @PutMapping("/add/{bookId}")
+    public void  addUserReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userRepository.getUserByEmail(email);
+        Integer userId = userService.getUserIdByEmail(email);
+        Book book = bookRepository.findById(bookId).orElse(null);
+
+        user.removeFromToReadBooks(book);
+        userRepository.save(user);
+
+        userReadBooksService.save(user, book);
+    }
+
+    @PutMapping("/add/{bookId}")
+    public void  deleteUserReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userRepository.getUserByEmail(email);
+        Integer userId = userService.getUserIdByEmail(email);
+
+        userReadBooksService.deleteReadBook(userId, bookId);
+    }
+
+    @PutMapping("/addToRead/{bookId}")
+    public void  addUserToReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userRepository.getUserByEmail(email);
+
+        Book book = bookRepository.findById(bookId).orElse(null);
+
+        user.addToReadBooks(book);
+        userRepository.save(user);
+    }
+
+    @PutMapping("/like/{bookId}")
+    public void  userLikeReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Integer userId = userService.getUserIdByEmail(email);
+
+        userReadBooksService.userLikeReadBook(userId, bookId);
+    }
+
+    @PutMapping("/unlike/{bookId}")
+    public void  userUnLikeReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Integer userId = userService.getUserIdByEmail(email);
+
+        userReadBooksService.userUnLikeReadBook(userId, bookId);
     }
 }
