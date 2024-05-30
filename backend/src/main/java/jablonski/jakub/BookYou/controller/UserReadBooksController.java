@@ -57,7 +57,7 @@ public class UserReadBooksController {
         userReadBooksService.save(user, book);
     }
 
-    @PutMapping("/add/{bookId}")
+    @PutMapping("/delete/{bookId}")
     public void  deleteUserReadBook(@PathVariable int bookId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();

@@ -47,6 +47,14 @@ const BookPage = () => {
   }, [id]);
 
   const handleAddToRead = () => {
+    if (bookStatus.read) {
+      handleDeleteReadBook();
+    } else {
+      handleAddReadBook();
+    }
+  };
+
+  const handleAddReadBook = () => {
     axios
       .put(
         `http://localhost:8080/api/v1/userbook/add/${id}`,
@@ -66,6 +74,48 @@ const BookPage = () => {
         console.error("Error fetching :", error);
       });
   };
+
+  const handleDeleteReadBook = () => {
+    axios
+      .put(
+        `http://localhost:8080/api/v1/userbook/delete/${id}`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(() => {
+        setBookStatus((prevStatus) => ({
+          ...prevStatus,
+          read: false,
+          liked: false,
+        }));
+      })
+      .catch((error) => {
+        console.error("Error fetching :", error);
+      });
+  };
+
+  // const handleAddToRead = () => {
+  //   axios
+  //     .put(
+  //       `http://localhost:8080/api/v1/userbook/add/${id}`,
+  //       {},
+  //       {
+  //         headers: authHeader(),
+  //       }
+  //     )
+  //     .then(() => {
+  //       setBookStatus((prevStatus) => ({
+  //         ...prevStatus,
+  //         read: true,
+  //         toRead: false,
+  //       }));
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching :", error);
+  //     });
+  // };
 
   const handleAddToToRead = () => {
     axios

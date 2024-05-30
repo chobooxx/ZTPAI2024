@@ -26,5 +26,7 @@ public interface UserReadBooksRepository extends JpaRepository<UserReadBooks, In
 
     @Modifying
     @Transactional
-    void deleteReadBook(Integer userId, Integer bookId);
+    @Query("DELETE FROM UserReadBooks urb WHERE urb.user.userId = :userId AND urb.book.book_id = :bookId")
+    void deleteReadBook(@Param("userId") Integer userId, @Param("bookId") Integer bookId);
+
 }
