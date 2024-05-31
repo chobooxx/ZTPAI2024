@@ -1,55 +1,58 @@
 .content_book_top {
-    width: 95%;
-    height: 50%;
-    display: flex;
-    flex-direction: row;
+  /* background-color: red; */
+  width: 95%;
+  height: 50%;
+  display: flex;
+  flex-direction: row;
 
-    margin: 2em;
+  margin-top: 2em;
 }
 
 .content_book_top .content_description {
-    margin-left: 3em;
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
+  margin-left: 3em;
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
 }
 
-.content_book_top .content_description .content_description_icons {
-    display: flex;
-    flex-direction: row;
+.content_description .content_description_icons {
+  display: flex;
+  flex-direction: row;
 }
 
-.content_book_top .content_description .content_description_icons .content_description_element {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 2em;
-    margin-right: 2em;
-    border: 0.1em solid black;
-    border-radius: 10%;
+.content_description_icons .content_description_element {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  margin-right: 2em;
+  border: 0.1em solid black;
+  border-radius: 10%;
 
-    width: 15em;
-    justify-content: center;
-    align-items: center;
+  width: 15em;
+  justify-content: center;
+  align-items: center;
 }
 
-.content_book_top .content_description .content_description_icons .content_description_element img {
-    max-height: 5em;
-    width: auto;
+.content_description_element.read {
+  background-color: green;
 }
 
-.content_book_top .content_description .content_description_names {
-    font-size: 2em;
+.content_description_element img {
+  max-height: 5em;
+  width: auto;
 }
 
-.content_book_top .content_description .content_description_names .content_description_names_element {
-    margin-bottom: 0.9em;
+.content_description_names_element {
+  margin-bottom: 0.9em;
+  font-size: 2em;
+  overflow-wrap: break-word;
 }
 
 .content_book_bot {
-    width: 95%;
-    height: 50%;
-    margin: 2em 2em;
+  width: 95%;
+  height: 50%;
+  margin: 2em 2em;
 }
 .content_description_element:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
