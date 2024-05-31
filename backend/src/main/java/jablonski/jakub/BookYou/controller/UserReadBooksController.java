@@ -79,6 +79,18 @@ public class UserReadBooksController {
         userRepository.save(user);
     }
 
+    @PutMapping("/deleteToRead/{bookId}")
+    public void  deleteUserToReadBook(@PathVariable int bookId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = userRepository.getUserByEmail(email);
+
+        Book book = bookRepository.findById(bookId).orElse(null);
+
+        user.removeFromToReadBooks(book);
+        userRepository.save(user);
+    }
+
     @PutMapping("/like/{bookId}")
     public void  userLikeReadBook(@PathVariable int bookId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

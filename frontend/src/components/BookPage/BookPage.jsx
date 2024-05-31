@@ -96,28 +96,15 @@ const BookPage = () => {
       });
   };
 
-  // const handleAddToRead = () => {
-  //   axios
-  //     .put(
-  //       `http://localhost:8080/api/v1/userbook/add/${id}`,
-  //       {},
-  //       {
-  //         headers: authHeader(),
-  //       }
-  //     )
-  //     .then(() => {
-  //       setBookStatus((prevStatus) => ({
-  //         ...prevStatus,
-  //         read: true,
-  //         toRead: false,
-  //       }));
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching :", error);
-  //     });
-  // };
-
   const handleAddToToRead = () => {
+    if (bookStatus.toRead) {
+      handleDeleteToToRead();
+    } else {
+      handleAddToToReadBook();
+    }
+  };
+
+  const handleAddToToReadBook = () => {
     axios
       .put(
         `http://localhost:8080/api/v1/userbook/addToRead/${id}`,
@@ -128,6 +115,23 @@ const BookPage = () => {
       )
       .then(() => {
         setBookStatus((prevStatus) => ({ ...prevStatus, toRead: true }));
+      })
+      .catch((error) => {
+        console.error("Error fetching :", error);
+      });
+  };
+
+  const handleDeleteToToRead = () => {
+    axios
+      .put(
+        `http://localhost:8080/api/v1/userbook/deleteToRead/${id}`,
+        {},
+        {
+          headers: authHeader(),
+        }
+      )
+      .then(() => {
+        setBookStatus((prevStatus) => ({ ...prevStatus, toRead: false }));
       })
       .catch((error) => {
         console.error("Error fetching :", error);
@@ -200,10 +204,16 @@ const BookPage = () => {
               {!bookStatus.read && (
                 <Button
                   onClick={handleAddToToRead}
-                  className="content_description_element"
+                  className={`content_description_element ${
+                    bookStatus.toRead ? "read" : ""
+                  }`}
                 >
                   <img alt="" src="../../../img/book_add_to_read.svg" />
-                  <p>Add to to-read list</p>
+                  <p>
+                    {bookStatus.toRead
+                      ? "Remove from to-read list"
+                      : "Add to to-read list"}
+                  </p>
                 </Button>
               )}
 
