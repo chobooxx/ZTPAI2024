@@ -1,5 +1,6 @@
 package jablonski.jakub.BookYou.repository;
 
+import jablonski.jakub.BookYou.dto.BookDto;
 import jablonski.jakub.BookYou.model.Book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,4 +23,7 @@ public interface BookRepository  extends JpaRepository<Book, Integer> {
     List<Book> getBooksByCategoryId(Integer categoryId);
 
     List<Book> findAll();
+
+    @Query("SELECT urb.book FROM UserReadBooks urb WHERE urb.user.userId = :userId")
+    List<Book> getUserReadBooks(Integer userId);
 }

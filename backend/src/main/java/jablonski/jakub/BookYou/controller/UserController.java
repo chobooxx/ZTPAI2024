@@ -1,7 +1,9 @@
 package jablonski.jakub.BookYou.controller;
 
 import jablonski.jakub.BookYou.dto.BookDto;
+import jablonski.jakub.BookYou.dto.UserDto;
 import jablonski.jakub.BookYou.mapper.BookMapper;
+import jablonski.jakub.BookYou.mapper.UserMapper;
 import jablonski.jakub.BookYou.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class UserController {
 
     private final UserService userService;
     private final BookMapper bookMapper;
+    private final UserMapper userMapper;
 
     @GetMapping("/toread")
     public ResponseEntity<List<BookDto>> getUserToReadBooks() {
@@ -34,6 +37,17 @@ public class UserController {
                         .stream()
                         .map(bookMapper::mapToBookDto)
                         .toList()
+        );
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<UserDto> getUserInfo() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Integer userId = userService.getUserIdByEmail(email);
+
+        return ResponseEntity.ok(
+                userMapper.mapToUserDto(userService.getUserInfo(userId))
         );
     }
 }

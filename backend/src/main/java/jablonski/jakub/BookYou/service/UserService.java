@@ -2,6 +2,7 @@ package jablonski.jakub.BookYou.service;
 
 import jablonski.jakub.BookYou.dto.BookDto;
 import jablonski.jakub.BookYou.model.Book;
+import jablonski.jakub.BookYou.model.User;
 import jablonski.jakub.BookYou.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,9 @@ public class UserService {
     }
     public List<Book> getUserToReadBooks(Integer userId) {
         return userRepository.getUserToReadBooks(userId);
+    }
+
+    public User getUserInfo(Integer userId) {
+        return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
     }
 }

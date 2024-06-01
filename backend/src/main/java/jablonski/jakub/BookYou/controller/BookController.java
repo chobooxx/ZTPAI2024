@@ -11,6 +11,8 @@ import jablonski.jakub.BookYou.service.UserService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +25,7 @@ public class BookController {
     private final BookService bookService;
     private final JwtService jwtService;
     private final BookMapper bookMapper;
+    private final UserService userService;
 
     @GetMapping("/bookinfo/{bookId}")
      public ResponseEntity<BookDto> getBookById(@PathVariable int bookId) {
@@ -61,4 +64,17 @@ public class BookController {
         );
     }
 
+    @GetMapping("/userreadbooks")
+    public ResponseEntity<List<BookDto>> getUserReadBooks() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Integer userId = userService.getUserIdByEmail(email);
+
+        return ResponseEntity.ok(
+                bookService.getUserReadBooks(userId)
+                        .stream()
+                        .map(bookMapper::mapToBookDto)
+                        .toList()
+        );
+    }
 }

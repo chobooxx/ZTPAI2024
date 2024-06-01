@@ -1,0 +1,50 @@
+.profile-options {
+  height: 10%;
+  width: 95%;
+  /* background-color: red; */
+
+  font-size: 3em;
+  align-items: center;
+  display: flex;
+  margin: 0;
+  color: #558f6b;
+  gap: 1em;
+}
+.profile-content {
+  width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30em, 1fr));
+  gap: 16px;
+  overflow: auto;
+  height: 85%;
+
+  /* background-color: yellow; */
+}
+
+.profile-options-button {
+  font-weight: 600;
+  width: 18em;
+  color: #558f6b;
+  padding: 1.5em;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: #558f6b 0.3em solid;
+  border-radius: 2em;
+}
+
+.profile-info-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.profile-info-block {
+  /* color: #558f6b; */
+  width: 20em;
+  padding: 1em;
+  font-size: 2em;
+  border: #558f6b 0.3em solid;
+  border-radius: 2em;
+}

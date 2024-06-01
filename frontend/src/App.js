@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import PrivateRoutes from "./utils/PrivateRoutes";
-
 import HomePage from "./components/HomePage/HomePage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
@@ -12,6 +11,7 @@ import BookPage from "./components/BookPage/BookPage";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import ToReadPage from "./components/ToReadPage/ToReadPage";
 import SearchPage from "./components/SearchPage/SearchPage";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 import "./App.css";
 
@@ -25,6 +25,7 @@ function App() {
         <Route element={<CategoryPage />} path="/category/:categoryId" />
         <Route element={<ToReadPage />} path="/to_read" />
         <Route element={<SearchPage />} path="/search" />
+        <Route element={<ProfilePage />} path="/profile" />
       </Route>
       <Route element={<LoggedRoutes />}>
         <Route element={<LoginPage />} path="/" />
