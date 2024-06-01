@@ -51,4 +51,14 @@ public class BookController {
         );
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<BookDto>> getAllBooks() {
+        return ResponseEntity.ok(
+                bookService.getAllBooks()
+                        .stream()
+                        .map(bookMapper::mapToBookDto)
+                        .toList()
+        );
+    }
+
 }

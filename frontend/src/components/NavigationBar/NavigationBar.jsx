@@ -33,7 +33,7 @@ const NavigationBar = () => {
         <div>TO-READ</div>
       </Link>
       <Link to="/search" className="menu_element">
-        <img alt="To-read Icon" src="../../../img/to_read.svg" />
+        <img alt="To-read Icon" src="../../../img/search_small.svg" />
         <div>SEARCH</div>
       </Link>
       <Link to="/profile" className="menu_element">
