@@ -7,6 +7,7 @@ import "./CategoryPage.css";
 
 import authHeader from "../../service/auth-header";
 import NavigationBar from "../NavigationBar/NavigationBar";
+import BookListElement from "../BookListElement/BookListElement";
 
 const CategoryPage = () => {
   const [booksOfCategory, setBooksOfCategory] = useState([]);
@@ -47,7 +48,11 @@ const CategoryPage = () => {
       <NavigationBar />
       <ContentBox>
         <div className="categoryName">{categoryName} books:</div>
-        <div className="categoryBooks"></div>
+        <div className="categoryBooks">
+          {booksOfCategory.map((book) => (
+            <BookListElement book={book} />
+          ))}
+        </div>
       </ContentBox>
     </>
   );

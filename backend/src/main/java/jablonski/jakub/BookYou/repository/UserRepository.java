@@ -1,11 +1,14 @@
 package jablonski.jakub.BookYou.repository;
 
+import jablonski.jakub.BookYou.dto.BookDto;
+import jablonski.jakub.BookYou.model.Book;
 import jablonski.jakub.BookYou.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
@@ -20,6 +23,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User getUserByEmail(String email);
 
-//    @Query("DELETE FROM user_to_read_books WHERE userId = :userId AND book_id = :bookId")
-//    void deleteUserToReadBookPair(Integer userId, Integer bookId);
+    @Query("SELECT b FROM User u JOIN u.toReadBooks b WHERE u.userId = :userId")
+    List<Book> getUserToReadBooks(Integer userId);
 }

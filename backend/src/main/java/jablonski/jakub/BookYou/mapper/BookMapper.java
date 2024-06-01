@@ -22,7 +22,7 @@ public class BookMapper {
         );
     }
 
-    public static Book mapToBook(BookDto bookDto) {
+    public Book mapToBook(BookDto bookDto) {
         return new Book(
                 bookDto.getBook_id(),
                 bookDto.getTitle(),

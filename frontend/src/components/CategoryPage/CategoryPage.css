@@ -1,5 +1,4 @@
 .categoryName {
-  background-color: red;
   height: 10%;
   width: 95%;
 
@@ -10,7 +9,10 @@
   color: #558f6b;
 }
 .categoryBooks {
-  background-color: green;
-  height: 85%;
   width: 95%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30em, 1fr));
+  gap: 16px;
+  overflow: auto;
+  height: 85%;
 }
