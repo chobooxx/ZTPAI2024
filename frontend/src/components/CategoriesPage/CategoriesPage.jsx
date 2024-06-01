@@ -1,37 +1,41 @@
-import React from "react";
-import Header from "../Header/Header";
-import NavigationBar from "../NavigationBar/NavigationBar";
-import "./CategoriesPage.css";
-import ContentBox from "../ContentBox/ContentBox";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthService from "../../service/auth.service";
+import axios from "axios";
+
+import "./CategoriesPage.css";
+
+import CategoryLink from "../CategoryLink/CategoryLink";
+import ContentBox from "../ContentBox/ContentBox";
+import authHeader from "../../service/auth-header";
+import NavigationBar from "../NavigationBar/NavigationBar";
 
 const CategoriesPage = () => {
-  const currentUser = AuthService.getCurrentUser();
+  const [bookCategories, setBookCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/v1/categories/all", {
+        headers: authHeader(),
+      })
+      .then((response) => {
+        setBookCategories(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }, []);
 
   return (
     <>
-      <Header />
       <NavigationBar />
       <ContentBox>
-        <div className="content_categories">
-          <div className="content_categories_title">Categories</div>
-
-          <div className="content_categories_blocks">
-            <ul>
-              <li>
-                <Link href="" className="content_categories_blocks_book">
-                  Element
-                </Link>
-              </li>
-              <li>{currentUser.name}</li>
-              <li>
-                <Link href="" className="content_categories_blocks_book">
-                  Element
-                </Link>
-              </li>
-            </ul>
-          </div>
+        <div className="content_categories_title">Categories</div>
+        <div className="content_categories_blocks">
+          <ul>
+            {bookCategories.map((category) => (
+              <CategoryLink category={category} />
+            ))}
+          </ul>
         </div>
       </ContentBox>
     </>

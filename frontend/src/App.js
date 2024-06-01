@@ -9,6 +9,7 @@ import RegisterPage from "./components/RegisterPage/RegisterPage";
 import CategoriesPage from "./components/CategoriesPage/CategoriesPage";
 import LoggedRoutes from "./utils/LoggedRoutes";
 import BookPage from "./components/BookPage/BookPage";
+import CategoryPage from "./components/CategoryPage/CategoryPage";
 
 import "./App.css";
 
@@ -19,6 +20,7 @@ function App() {
         <Route element={<HomePage />} path="/homepage" />
         <Route element={<CategoriesPage />} path="/categories" />
         <Route element={<BookPage />} path="/book/:id" />
+        <Route element={<CategoryPage />} path="/category/:categoryId" />
       </Route>
       <Route element={<LoggedRoutes />}>
         <Route element={<LoginPage />} path="/" />

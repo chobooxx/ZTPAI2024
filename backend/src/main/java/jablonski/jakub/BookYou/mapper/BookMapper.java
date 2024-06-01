@@ -10,7 +10,7 @@ import java.util.HashSet;
 @Component
 public class BookMapper {
 
-    public static BookDto mapToBookDto(Book book) {
+    public BookDto mapToBookDto(Book book) {
         return new BookDto(
                 book.getBook_id(),
                 book.getTitle(),

@@ -18,4 +18,6 @@ public interface BookRepository  extends JpaRepository<Book, Integer> {
     @Query("SELECT b from Book b ORDER BY RANDOM() LIMIT 3")
     List<Book> findRandomThreeBooks();
 
+    @Query("SELECT b FROM Book b JOIN b.categories c WHERE c.category_id = :categoryId")
+    List<Book> getBooksByCategoryId(Integer categoryId);
 }

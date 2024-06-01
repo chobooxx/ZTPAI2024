@@ -8,6 +8,8 @@ import jablonski.jakub.BookYou.model.User;
 import jablonski.jakub.BookYou.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 import java.util.List;
 
 
@@ -26,5 +28,9 @@ public class BookService {
 
     public Book getBookById(Integer bookId) {
         return bookRepository.findById(bookId).orElseThrow(() -> new BookNotFoundException(bookId));
+    }
+
+    public List<Book> getBooksByCategoryId(Integer categoryId) {
+        return bookRepository.getBooksByCategoryId(categoryId);
     }
 }

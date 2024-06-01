@@ -1,0 +1,16 @@
+.categoryName {
+  background-color: red;
+  height: 10%;
+  width: 95%;
+
+  font-size: 3em;
+  align-items: center;
+  display: flex;
+  margin: 0;
+  color: #558f6b;
+}
+.categoryBooks {
+  background-color: green;
+  height: 85%;
+  width: 95%;
+}
