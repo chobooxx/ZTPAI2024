@@ -1,0 +1,20 @@
+.profile-admin-container form {
+  /* background-color: yellow; */
+  height: 95%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9em;
+}
+
+.profile-admin-block {
+  /* color: #558f6b; */
+  width: 20em;
+  padding: 1em;
+  font-size: 2em;
+  border: #558f6b 0.1em solid;
+  border-radius: 2em;
+  font-size: 1.8em;
+}

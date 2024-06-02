@@ -1,5 +1,4 @@
 .nav_bar {
-  /* background-color: blue; */
   height: 100vh;
   width: 12%;
   margin: 0;
@@ -20,17 +19,10 @@
 }
 
 #logoMoblie {
-  /* background-color: red; */
   max-width: 100%;
   max-height: auto;
   margin: 1em 0;
 }
-
-/* #logoMoblie {
-  margin-bottom: 1.8em;
-  max-width: 100%;
-  height: auto;
-} */
 
 .menu_element {
   color: #558f6b;

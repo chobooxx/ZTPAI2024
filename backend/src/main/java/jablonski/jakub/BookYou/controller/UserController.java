@@ -50,4 +50,15 @@ public class UserController {
                 userMapper.mapToUserDto(userService.getUserInfo(userId))
         );
     }
+
+    @GetMapping("/admin")
+    public ResponseEntity<Boolean> isAdmin() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        Integer userId = userService.getUserIdByEmail(email);
+
+        return ResponseEntity.ok(
+                userService.isAdmin(userId)
+        );
+    }
 }

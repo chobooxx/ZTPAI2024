@@ -1,5 +1,6 @@
 package jablonski.jakub.BookYou.mapper;
 
+import jablonski.jakub.BookYou.dto.AddBookRequest;
 import jablonski.jakub.BookYou.dto.BookDto;
 import jablonski.jakub.BookYou.model.Book;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class BookMapper {
         );
     }
 
-    public Book mapToBook(BookDto bookDto) {
+    public Book toBook(BookDto bookDto) {
         return new Book(
                 bookDto.getBook_id(),
                 bookDto.getTitle(),
@@ -31,6 +32,19 @@ public class BookMapper {
                 bookDto.getDescription(),
                 bookDto.getIsbn(),
                 bookDto.getRating(),
+                new HashSet<>()
+        );
+    }
+
+    public Book toBook(AddBookRequest bookRequest) {
+        return new Book(
+                null,
+                bookRequest.getTitle(),
+                bookRequest.getAuthor(),
+                bookRequest.getPhoto(),
+                bookRequest.getDescription(),
+                bookRequest.getIsbn(),
+                0,
                 new HashSet<>()
         );
     }

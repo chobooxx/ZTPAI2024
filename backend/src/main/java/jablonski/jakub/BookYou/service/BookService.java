@@ -41,4 +41,8 @@ public class BookService {
     public List<Book> getUserReadBooks(Integer userId) {
         return bookRepository.getUserReadBooks(userId);
     }
+
+    public void addNewBook(Book book) {
+        bookRepository.save(book);
+    }
 }

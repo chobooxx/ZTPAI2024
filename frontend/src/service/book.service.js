@@ -1,50 +1,41 @@
-// import axios from "axios";
+import axios from "axios";
+import authHeader from "./auth-header";
 
-// const API_URL = "http://localhost:8080/api/v1/auth/";
+const API_URL = "http://localhost:8080/api/v1/book/";
 
-// const register = (name, surname, email, password) => {
-//   return axios.post(API_URL + "register", {
-//     name,
-//     surname,
-//     email,
-//     password,
-//   });
-// };
+const register = (name, surname, email, password) => {
+  return axios.post(API_URL + "register", {
+    name,
+    surname,
+    email,
+    password,
+  });
+};
 
-// const login = (email, password) => {
-//   return axios
-//     .post(API_URL + "authenticate", {
-//       email,
-//       password,
-//     })
-//     .then((response) => {
-//       if (response.data.token) {
-//         localStorage.setItem("user", JSON.stringify(response.data));
-//       }
+const addBook = (title, author, description, photo, isbn) => {
+  return axios
+    .post(
+      API_URL + `create`,
+      {
+        title,
+        author,
+        description,
+        photo,
+        isbn,
+      },
+      { headers: authHeader() }
+    )
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      throw error;
+    });
+};
 
-//       return response.data;
-//     });
-// };
+const BookService = {
+  addBook,
+};
 
-// const logout = async () => {
-//   try {
-//     localStorage.removeItem("user");
-//     localStorage.clear();
-//     await axios.post("http://localhost:8080/api/v1/auth/logout");
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// };
-
-// const getCurrentUser = () => {
-//   return JSON.parse(localStorage.getItem("user"));
-// };
-
-// const AuthService = {
-//   register,
-//   login,
-//   logout,
-//   getCurrentUser,
-// };
-
-// export default AuthService;
+export default BookService;

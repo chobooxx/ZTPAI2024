@@ -25,4 +25,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT b FROM User u JOIN u.toReadBooks b WHERE u.userId = :userId")
     List<Book> getUserToReadBooks(Integer userId);
+
+    @Query("SELECT CASE WHEN COUNT(t) > 0 THEN true ELSE false END FROM User u JOIN u.types t WHERE u.userId = :userId AND t.name = 'TYPE_ADMIN'")
+    Boolean isAdmin(Integer userId);
 }

@@ -24,4 +24,8 @@ public class UserService {
     public User getUserInfo(Integer userId) {
         return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
     }
+
+    public Boolean isAdmin(Integer userId) {
+        return userRepository.isAdmin(userId);
+    }
 }

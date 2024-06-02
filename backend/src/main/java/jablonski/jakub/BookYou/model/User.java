@@ -39,6 +39,16 @@ public class User implements UserDetails {
             inverseJoinColumns = {@JoinColumn(name = "type_id")})
     private Set<Type> types = new HashSet<>();
 
+    public void addType(Type type) {
+        types.add(type);
+        type.getUsers().add(this);
+    }
+
+    public void removeType(Type type) {
+        types.remove(type);
+        type.getUsers().remove(this);
+    }
+
     @ManyToMany
     @JoinTable(name = "user_to_read_books",
             joinColumns = {@JoinColumn( name = "user_id")},

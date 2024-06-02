@@ -12,6 +12,8 @@ import CategoryPage from "./components/CategoryPage/CategoryPage";
 import ToReadPage from "./components/ToReadPage/ToReadPage";
 import SearchPage from "./components/SearchPage/SearchPage";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
+import AdminRoutes from "./utils/AdminRoutes";
+import AdminPanel from "./components/AdminPanel/AdminPanel";
 
 import "./App.css";
 
@@ -26,6 +28,9 @@ function App() {
         <Route element={<ToReadPage />} path="/to_read" />
         <Route element={<SearchPage />} path="/search" />
         <Route element={<ProfilePage />} path="/profile" />
+      </Route>
+      <Route element={<AdminRoutes />}>
+        <Route element={<AdminPanel />} path="/adminpanel" />
       </Route>
       <Route element={<LoggedRoutes />}>
         <Route element={<LoginPage />} path="/" />
